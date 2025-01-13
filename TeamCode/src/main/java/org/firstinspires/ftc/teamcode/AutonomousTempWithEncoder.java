@@ -1,9 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Disabled//(name = "Autonomous Template w/ Encoders")
@@ -156,9 +155,9 @@ public class AutonomousTempWithEncoder extends LinearOpMode {
 		private void dualVSlide(double speed, int ticks) {
 			switchMode.initRunToPosition();
 			ctHubViper0.setTargetPosition(ticks);
-			expHubViper1.setTargetPosition(ticks);
+			expHubViper1.setTargetPosition(-ticks);
 			ctHubViper0.setPower(speed);
-			expHubViper1.setPower(speed);
+			expHubViper1.setPower(-speed);
 			while (ctHubViper0.isBusy() && expHubViper1.isBusy()) {
 				sleep(250);
 			}
