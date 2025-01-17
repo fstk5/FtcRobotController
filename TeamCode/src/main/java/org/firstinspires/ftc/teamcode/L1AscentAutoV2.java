@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "L1AscentAutoV2", group = "Autonomous")
 
@@ -85,37 +86,41 @@ public class L1AscentAutoV2 extends LinearOpMode {
 			sleep(250);
 			EncoderBasedDriving.vipers(0.75, 2100);
 			sleep(250);
-			//just incode
-			
-			
-			lucasJAMES = true;
-			while (lucasJAMES) {
-				ctHubViper0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-				ctHubViper0.setPower(0.3);
-				expHubViper1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-				expHubViper1.setPower(0.3);
-				banana = true;
-			}
-			while (banana) {
-				sleep(2000);
-				EncoderBasedDriving.clawoc(1);
-				
-			}
-			sleep(10000);
-			lucasJAMES = false;
-			
-			
-			//justincode
-			//multithreading Multithreading = new multithreading();
-			//Multithreading.start();
-			//viperHold();
-			
-			sleep(250);
+//			//just incode
+//
+//
+//			lucasJAMES = true;
+//			while (lucasJAMES) {
+//				ctHubViper0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//				ctHubViper0.setPower(0.3);
+//				expHubViper1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//				expHubViper1.setPower(0.3);
+//				banana = true;
+//			}
+//			while (banana) {
+//				sleep(2000);
+//				EncoderBasedDriving.clawoc(1);
+//
+//			}
+//			sleep(10000);
+//			lucasJAMES = false;
+//
+//
+//			//justincode
+			multithreading Multithreading = new multithreading();
+			Multithreading.start();
+			viperHold();
 			EncoderBasedDriving.drive(0.5, 250);
-			sleep(250);
+			ElapsedTime elapsedTime = new ElapsedTime();
+			new ElapsedTime();
+			do {
+			} while (elapsedTime.time() <= 250);
 			EncoderBasedDriving.clawoc(1);
-			sleep(1000);
+			elapsedTime.reset();
+			do {
+			} while (elapsedTime.time() <= 1000);
 			EncoderBasedDriving.drive(0.5, -800);
+			viperHold();
 			sleep(250);
 			EncoderBasedDriving.turn(0.5, 270);
 			sleep(250);
