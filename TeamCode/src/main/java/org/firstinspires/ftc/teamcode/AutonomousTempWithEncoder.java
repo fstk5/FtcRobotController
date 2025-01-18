@@ -5,13 +5,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Disabled//(name = "Autonomous Template w/ Encoders")
+@Disabled//(name = "AutonomousTempWithEncoders")
 
 public class AutonomousTempWithEncoder extends LinearOpMode {
 	private DcMotor ctHubViper0;
 	private DcMotor expHubViper1;
 	private DcMotor clawViper2;
-	private DcMotor hangClaw3;
 	private DcMotor fl2;
 	private DcMotor fr3;
 	private DcMotor bl1;
@@ -25,7 +24,6 @@ public class AutonomousTempWithEncoder extends LinearOpMode {
 		br0 = hardwareMap.get(DcMotor.class, "br0");
 		fl2 = hardwareMap.get(DcMotor.class, "fl2");
 		fr3 = hardwareMap.get(DcMotor.class, "fr3");
-		hangClaw3 = hardwareMap.get(DcMotor.class, "hangClaw3");
 		ctHubViper0 = hardwareMap.get(DcMotor.class, "ctHubViper0");
 		expHubViper1 = hardwareMap.get(DcMotor.class, "expHubViper1");
 		clawViper2 = hardwareMap.get(DcMotor.class, "clawViper2");
@@ -39,7 +37,6 @@ public class AutonomousTempWithEncoder extends LinearOpMode {
 		ctHubViper0.setDirection(DcMotor.Direction.FORWARD);
 		expHubViper1.setDirection(DcMotor.Direction.REVERSE);
 		clawViper2.setDirection(DcMotor.Direction.FORWARD);
-		hangClaw3.setDirection(DcMotor.Direction.FORWARD);
 		waitForStart();
 		
 		if (opModeIsActive()) {
@@ -77,19 +74,26 @@ public class AutonomousTempWithEncoder extends LinearOpMode {
 		
 		private void initRunToPosition() {
 			bl1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+			bl1.setTargetPosition(0);
 			bl1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 			br0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+			br0.setTargetPosition(0);
 			br0.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 			fl2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+			fl2.setTargetPosition(0);
 			fl2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 			fr3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+			fr3.setTargetPosition(0);
 			fr3.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 			ctHubViper0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+			ctHubViper0.setTargetPosition(0);
 			ctHubViper0.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 			expHubViper1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+			expHubViper1.setTargetPosition(0);
 			expHubViper1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-			clawViper2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-			clawViper2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//			linAct2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//			linAct2.setTargetPosition(0);
+//			linAct2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 		}
 		
 		private void initTimeBased() {
@@ -155,9 +159,9 @@ public class AutonomousTempWithEncoder extends LinearOpMode {
 		private void dualVSlide(double speed, int ticks) {
 			switchMode.initRunToPosition();
 			ctHubViper0.setTargetPosition(ticks);
-			expHubViper1.setTargetPosition(-ticks);
+			expHubViper1.setTargetPosition(ticks);
 			ctHubViper0.setPower(speed);
-			expHubViper1.setPower(-speed);
+			expHubViper1.setPower(speed);
 			while (ctHubViper0.isBusy() && expHubViper1.isBusy()) {
 				sleep(250);
 			}
@@ -169,18 +173,6 @@ public class AutonomousTempWithEncoder extends LinearOpMode {
 		
 		private void clawoc(long position) {
 			ccs0.setPosition(position);
-		}
-		
-		private void hang() {
-			if (gamepad1.b) {
-				hangClaw3.setPower(1);
-			}
-			else if (gamepad1.a) {
-				hangClaw3.setPower(-1);
-			}
-			else {
-				hangClaw3.setPower(0);
-			}
 		}
 	}
 	

@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "MCP")
-public class MultithreadingConceptProgram extends LinearOpMode {
+@TeleOp(name = "TelemetryVipers")
+public class TelemetryViperslideTest extends LinearOpMode {
 	
 	private DcMotor br0;
 	private DcMotor bl1;
@@ -23,8 +23,6 @@ public class MultithreadingConceptProgram extends LinearOpMode {
 	private boolean btrue;
 	private boolean tempVar;
 	
-	private int number;
-
 	@Override
 	public void runOpMode() {
 		br0 = hardwareMap.get(DcMotor.class, "br0");
@@ -54,32 +52,27 @@ public class MultithreadingConceptProgram extends LinearOpMode {
 		bl1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 		fl2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 		fr3.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+		ctHubViper0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+		expHubViper1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 		ctHubViper0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 		expHubViper1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 		
 		btrue = false;
 		
-		number = 0;
-		
 		waitForStart();
 		
 		if (opModeIsActive()) {
-			multithreading Multithreading = new multithreading();
-			Multithreading.start();
-			telemetry.addLine("Multithreading! Iteration #" + number);
-			do {
-				telemetry.update();
-				number = number + 1;
-			} while (opModeIsActive());
-		}
-	}
-	private class multithreading extends Thread {
-		@Override
-		public void run() {
-			do {
+			while (opModeIsActive()) {
+				telemetry();
 				ctHubViper0.setPower(0.3);
 				expHubViper1.setPower(0.3);
-			} while (true);
+			}
 		}
+	}
+	
+	private void telemetry() {
+		telemetry.addLine("ctHubViper0: " + ctHubViper0.getCurrentPosition());
+		telemetry.addLine("expHubViper1: " + expHubViper1.getCurrentPosition());
+		telemetry.update();
 	}
 }

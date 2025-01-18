@@ -1,19 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.graphics.Color;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.robotcore.external.JavaUtil;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Blinker;
-import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "ZZblueback")
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
+@Disabled//(name = "ZZblueback")
 public class ZZblueback extends LinearOpMode {
 	
 	private Servo ClawServo0;

@@ -146,32 +146,31 @@ public class TeleOpDrive extends LinearOpMode {
 	
 	private void linAct() {
 		if (gamepad2.right_stick_y > 0) {
-			linAct2.setPower(-1);
-		}
-		
-		else if (gamepad2.right_stick_y < 0) {
 			linAct2.setPower(1);
+		} else if (gamepad2.right_stick_y < 0) {
+			linAct2.setPower(-1);
 		}
 		else {
 			linAct2.setPower(0);
 		}
 	}
 	
-	private void claw() {
+	private void wrist() {
 		//extend
 		if (gamepad2.x) {
-			wls1.setPosition(0.5);
+			wls1.setPosition(0.35);
 		}
 		
 		else if (gamepad2.a) {
-			wls1.setPosition(0.03);
+			wls1.setPosition(0.21);
 		}
 		
 		else if (gamepad2.y) {
-			wls1.setPosition(0.97);
+			wls1.setPosition(0.4);
 		}
 	}
-	private void wrist() {
+	
+	private void claw() {
 		//claw
 		if (gamepad2.right_bumper) {
 			ccs0.setPosition(1);
@@ -186,8 +185,6 @@ public class TeleOpDrive extends LinearOpMode {
 			crs2.setPosition(0);
 		}
 		
-		
-		
 		else if (gamepad2.dpad_right) {
 			crs2.setPosition(1);
 		}
@@ -196,20 +193,16 @@ public class TeleOpDrive extends LinearOpMode {
 		}
 		
 	}
-	
+
 	
 	
 	private void brake() {
 		if (gamepad2.b) {
-			if (!btrue) {
-				ctHubViper0.setPower(0.11);
-				expHubViper1.setPower(0.11);
-				btrue = true;
-			} else {
-				ctHubViper0.setPower(0);
-				expHubViper1.setPower(0);
-				btrue = false;
-			}
+			
+			ctHubViper0.setPower(0.3);
+			expHubViper1.setPower(0.3);
+			
 		}
+	
 	}
 }
