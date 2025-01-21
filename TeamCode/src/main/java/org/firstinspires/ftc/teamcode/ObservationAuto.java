@@ -266,7 +266,7 @@ public class ObservationAuto extends LinearOpMode {
 	 * Stops selected functions in variable 'function'
 	 * & stops all functions if variable is empty, possible values are:
 	 * driveSystem (bl0, br1, fl2, fr3), viperSystem (ctHubViper0, expHubViper1), clawSystem (linAct2)
-	 * */
+	 */
 	private void stop(String functions) {
 		switch (functions) {
 			case "driveSystem":
