@@ -76,35 +76,51 @@ public class L1AscentAutoV2 extends LinearOpMode {
 			expHubViper1.setTargetPosition(0);
 			expHubViper1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 			
-			
-		/*	sleep(250);
-			EncoderBasedDriving.slide(0.75, 250);
+			EncoderBasedDriving.clawud(0.52);
+			EncoderBasedDriving.slide(0.75, 400);
 			sleep(250);
-			EncoderBasedDriving.drive(0.5, 500);
+			EncoderBasedDriving.drive(0.5, 300);
 			sleep(250);
 			EncoderBasedDriving.turn(0.5, -250);
 			sleep(250);
-			EncoderBasedDriving.slide(0.5, 175);
-			sleep(250); */
+			EncoderBasedDriving.slide(0.5, 75);
+			sleep(250);
 			EncoderBasedDriving.vipers(0.75, 1100);//2100 for second number
 			sleep(1750);
 			ctHubViper0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 			expHubViper1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 			ctHubViper0.setPower(0.3);
 			expHubViper1.setPower(0.3);
-			sleep(1000);
-			EncoderBasedDriving.drive(0.2, 400);
-			sleep(1000);
+			runtime.reset();
+			do {
+			} while (opModeIsActive() && (runtime.seconds() < 0.25));
+			EncoderBasedDriving.drive(0.2, 275);
+			runtime.reset();
+			do {
+			} while (opModeIsActive() && (runtime.seconds() < 0.25));
 			EncoderBasedDriving.clawoc(1);
-			sleep(1000);
-			EncoderBasedDriving.drive(0.2, -400);
+			runtime.reset();
+			do {
+			} while (opModeIsActive() && (runtime.seconds() < 0.25));
+			EncoderBasedDriving.drive(0.2, -150);
 			sleep(500);
-			ctHubViper0.setPower(0.001);
-			expHubViper1.setPower(0.001);
-			sleep(8000);
-			ctHubViper0.setPower(-0.2);
-			expHubViper1.setPower(-0.2);
-			sleep(600);
+			ctHubViper0.setPower(0.00001);
+			expHubViper1.setPower(0.00001);
+			sleep(2000);
+			EncoderBasedDriving.drive(0.5, -400);
+			sleep(250);
+			EncoderBasedDriving.turn(0.5, 250);
+			sleep(250);
+			EncoderBasedDriving.slide(0.75, 1000);
+			sleep(250);
+			EncoderBasedDriving.vipers(0.75, 1300);
+			sleep(250);
+			ctHubViper0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+			expHubViper1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+			ctHubViper0.setPower(0.3);
+			expHubViper1.setPower(0.3);
+			sleep(3000);
+			
 			
 			
 			/*
@@ -115,13 +131,10 @@ public class L1AscentAutoV2 extends LinearOpMode {
 			EncoderBasedDriving.clawoc(1);
 			runtime.reset();
 			do {} while (opModeIsActive() && (runtime.seconds() < 1));
-			EncoderBasedDriving.drive(0.5, -800);
+			
 			viperHold();
 			sleep(250);
-			EncoderBasedDriving.turn(0.5, 270);
-			sleep(250);
-			EncoderBasedDriving.slide(0.75, 900);
-			sleep(250);
+			
 			EncoderBasedDriving.drive(0.5, -100);
 			sleep(250);
 			viperHold();
