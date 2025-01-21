@@ -169,7 +169,6 @@ public class TeleOpDrive extends LinearOpMode {
 			wls1.setPosition(0.4);
 		}
 	}
-	
 	private void claw() {
 		//claw
 		if (gamepad2.right_bumper) {
@@ -177,7 +176,7 @@ public class TeleOpDrive extends LinearOpMode {
 		}
 		
 		else if (gamepad2.left_bumper) {
-			ccs0.setPosition(0.8);
+			ccs0.setPosition(0.75);
 		}
 	}
 	private void spin(){
@@ -201,7 +200,7 @@ public class TeleOpDrive extends LinearOpMode {
 			
 			ctHubViper0.setPower(0.3);
 			expHubViper1.setPower(0.3);
-			
+		
 		}
 	
 	}
