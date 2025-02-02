@@ -21,7 +21,6 @@ public class TeleOpDrive extends LinearOpMode {
 	private Servo crs2;
 	
 	private boolean btrue;
-	private boolean tempVar;
 	
 	@Override
 	public void runOpMode() {
@@ -45,8 +44,8 @@ public class TeleOpDrive extends LinearOpMode {
 		fr3.setDirection(DcMotor.Direction.FORWARD);
 		ctHubViper0.setDirection(DcMotor.Direction.FORWARD);
 		expHubViper1.setDirection(DcMotor.Direction.REVERSE);
-		//ccs0.setDirection(Servo.Direction.FORWARD);
-		//crs2.setDirection(Servo.Direction.FORWARD);
+		ccs0.setDirection(Servo.Direction.FORWARD);
+		crs2.setDirection(Servo.Direction.FORWARD);
 		
 		
 		br0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -68,25 +67,21 @@ public class TeleOpDrive extends LinearOpMode {
 				slide();
 				vSlide();
 				linAct();
+				claw();
 				brake();
 				hang();
-				flat();
+//				flat();
 				telemetry.update();
-				claw();
-				wrist();
-				spin();
 			}
 		}
 	}
-	private void flat() {
-		ctHubViper0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-		expHubViper1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-		hangClaw3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-		br0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-		bl1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-		fl2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-		fr3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-	}
+	
+	//	private void flat() {
+//		ctHubViper0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+//		expHubViper1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+//		clawViper2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+//		hangClaw3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+//	}
 	private void forward() {
 		br0.setPower(gamepad1.right_trigger);
 		bl1.setPower(gamepad1.right_trigger);
@@ -146,19 +141,19 @@ public class TeleOpDrive extends LinearOpMode {
 	
 	private void linAct() {
 		if (gamepad2.right_stick_y > 0) {
-			linAct2.setPower(1);
-		} else if (gamepad2.right_stick_y < 0) {
 			linAct2.setPower(-1);
+		} else if (gamepad2.right_stick_y < 0) {
+			linAct2.setPower(1);
 		}
 		else {
 			linAct2.setPower(0);
 		}
 	}
 	
-	private void wrist() {
-		//extend
+	private void claw() {
+		//wrist
 		if (gamepad2.x) {
-			wls1.setPosition(0.35);
+			wls1.setPosition(0.3);
 		}
 		
 		else if (gamepad2.a) {
@@ -166,42 +161,34 @@ public class TeleOpDrive extends LinearOpMode {
 		}
 		
 		else if (gamepad2.y) {
-			wls1.setPosition(0.4);
+			wls1.setPosition(0.47);
 		}
-	}
-	private void claw() {
+		
 		//claw
-		if (gamepad2.right_bumper) {
-			ccs0.setPosition(1);
+		else if (gamepad2.right_bumper) {
+			ccs0.setPosition(0.1);
 		}
 		
 		else if (gamepad2.left_bumper) {
-			ccs0.setPosition(0.75);
+			ccs0.setPosition(0.8);
 		}
-	}
-	private void spin(){
-		if (gamepad2.dpad_left) {
+		//spin
+		else if (gamepad2.dpad_left) {
 			crs2.setPosition(0);
+		} else if (gamepad2.dpad_up) {
+			crs2.setPosition(0.5);
 		}
 		
 		else if (gamepad2.dpad_right) {
 			crs2.setPosition(1);
-		}
-		else {
+		} else {
 			crs2.setPosition(0.5);
 		}
-		
 	}
-
-	
-	
 	private void brake() {
 		if (gamepad2.b) {
-			
 			ctHubViper0.setPower(0.3);
 			expHubViper1.setPower(0.3);
-		
-		}
-	
+		} 
 	}
 }

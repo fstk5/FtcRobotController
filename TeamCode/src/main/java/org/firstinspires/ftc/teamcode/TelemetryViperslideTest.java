@@ -64,8 +64,8 @@ public class TelemetryViperslideTest extends LinearOpMode {
 		if (opModeIsActive()) {
 			while (opModeIsActive()) {
 				telemetry();
-				ctHubViper0.setPower(0.3);
-				expHubViper1.setPower(0.3);
+				// ctHubViper0.setPower(0.3);
+				// expHubViper1.setPower(0.3);
 			}
 		}
 	}

@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "L1AscentAutoV2", group = "Autonomous")
+@Autonomous(name = "AutoViperExp", group = "Autonomous")
 
-public class L1AscentAutoV2 extends LinearOpMode {
+public class ViperTestAuto extends LinearOpMode {
 	private DcMotor br0;
 	private DcMotor bl1;
 	private DcMotor fl2;
@@ -48,8 +48,6 @@ public class L1AscentAutoV2 extends LinearOpMode {
 		expHubViper1.setDirection(DcMotor.Direction.REVERSE);
 		linAct2.setDirection(DcMotor.Direction.FORWARD);
 		
-		ccs0.setPosition(0.1);//this runs when you press inititallize
-		wls1.setPosition(0.21);
 		
 		ElapsedTime runtime = new ElapsedTime();
 		
@@ -70,122 +68,10 @@ public class L1AscentAutoV2 extends LinearOpMode {
 			encoderBasedDriving EncoderBasedDriving = new encoderBasedDriving();
 			
 			
-			ctHubViper0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-			ctHubViper0.setTargetPosition(0);
-			ctHubViper0.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-			expHubViper1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-			expHubViper1.setTargetPosition(0);
-			expHubViper1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-			
-			EncoderBasedDriving.clawud(0.52);
-			hangClaw3.setPower(-0.52);
-			sleep(800);
-			hangClaw3.setPower(0);
-			sleep(300);
-			EncoderBasedDriving.slide(0.4, 400);
-			sleep(300);
-			EncoderBasedDriving.drive(0.4, 300);
-			sleep(300);
-			EncoderBasedDriving.turn(0.2, -250);
-			sleep(250);
-			EncoderBasedDriving.slide(0.35, 140);
-			sleep(250);
-			ctHubViper0.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-			ctHubViper0.setTargetPosition(2100);
-			expHubViper1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-			expHubViper1.setTargetPosition(2100);
-			ctHubViper0.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-			expHubViper1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-			EncoderBasedDriving.vipers(0.75, 2100);//2100 for second number
-			sleep(3100);
-			ctHubViper0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			expHubViper1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			ctHubViper0.setPower(0.3);
-			expHubViper1.setPower(0.3);
-			sleep(500);
-			EncoderBasedDriving.drive(0.1, 250);
-			//open claw here
-			sleep(1000);
-			EncoderBasedDriving.clawoc(1);
-			runtime.reset();
-			sleep(500);
-			EncoderBasedDriving.drive(0.2, -350);
-			sleep(500);
-			ctHubViper0.setPower(0.01);
-			expHubViper1.setPower(0.01);
-			sleep(500);
-			EncoderBasedDriving.drive(0.2, -250);//1sample
-		/*	
-			wls1.setPosition(0.21);//2sample
-			EncoderBasedDriving.turn(0.2,900);
-			EncoderBasedDriving.drive(0.2,300);
-			sleep(400);
-			
-			ctHubViper0.setPower(-0.6);
-			expHubViper1.setPower(-0.6);
-			sleep(900);
-			ctHubViper0.setPower(0);
-			expHubViper1.setPower(0);
-			
-			ccs0.setPosition(0.1);
+			EncoderBasedDriving.vipers(0.5, 100);
 			
 			
-			sleep(9000);
-			
-			*/
-			
-			sleep(500);
-			EncoderBasedDriving.turn(0.25, 310);
-			sleep(250);
-			EncoderBasedDriving.slide(0.25, 1200);
-			sleep(250);
-			EncoderBasedDriving.vipers(0.75, 1000);
-			sleep(250);
-			
-			ctHubViper0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			expHubViper1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			ctHubViper0.setPower(0.3);
-			expHubViper1.setPower(0.3);
-			
-			br0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			bl1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			fl2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			fr3.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-			
-			br0.setPower(-0.4);
-			bl1.setPower(-0.4);
-			fl2.setPower(-0.4);
-			fr3.setPower(-0.4);
-			sleep(400);
-			br0.setPower(0);
-			bl1.setPower(0);
-			fl2.setPower(0);
-			fr3.setPower(0);
-			
-			ctHubViper0.setPower(-0.4);
-			expHubViper1.setPower(-0.4);
-			sleep(400);
-			ctHubViper0.setPower(0);
-			expHubViper1.setPower(0);
-			
-			
-			
-			/*
-			viperHold();
-			EncoderBasedDriving.drive(0.5, 250);
-			runtime.reset();
-			do {} while (opModeIsActive() && (runtime.seconds() < 0.25));
-			EncoderBasedDriving.clawoc(1);
-			runtime.reset();
-			do {} while (opModeIsActive() && (runtime.seconds() < 1));
-			
-			viperHold();
-			sleep(250);
-			
-			EncoderBasedDriving.drive(0.5, -100);
-			sleep(250);
-			viperHold();
-			*/
+			sleep(10000);
 			terminateOpModeNow();
 		}
 	}
@@ -333,6 +219,14 @@ public class L1AscentAutoV2 extends LinearOpMode {
 		private void clawr(double position) {
 			crs2.setPosition(position);
 		}
+		
+		private void hclaw(double speed, int ticks) {
+			switchMode.initRunToPosition();
+			hangClaw3.setTargetPosition(ticks);
+			do {
+				hangClaw3.setPower(speed);
+			} while (hangClaw3.isBusy());
+		}
 	}
 	
 	private class timeBasedDriving {
@@ -454,4 +348,3 @@ public class L1AscentAutoV2 extends LinearOpMode {
 //		}
 //	}
 }
-
