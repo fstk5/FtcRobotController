@@ -17,7 +17,7 @@ public class TeleOpDrive extends LinearOpMode {
 	private DcMotor linAct2;
 	private DcMotor hangClaw3;
 	private Servo ccs0;
-	private Servo wls1;
+	private Servo wls4;
 	private Servo crs2;
 	
 	private boolean btrue;
@@ -33,7 +33,7 @@ public class TeleOpDrive extends LinearOpMode {
 		linAct2 = hardwareMap.get(DcMotor.class, "linAct2");
 		hangClaw3 = hardwareMap.get(DcMotor.class, "hangClaw3");
 		ccs0 = hardwareMap.get(Servo.class, "ccs0");
-		wls1 = hardwareMap.get(Servo.class, "wls1");
+		wls4 = hardwareMap.get(Servo.class, "wls4");
 		crs2 = hardwareMap.get(Servo.class, "crs2");
 		
 		
@@ -70,18 +70,18 @@ public class TeleOpDrive extends LinearOpMode {
 				claw();
 				brake();
 				hang();
-//				flat();
+				flat();
 				telemetry.update();
 			}
 		}
 	}
 	
-	//	private void flat() {
-//		ctHubViper0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-//		expHubViper1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-//		clawViper2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-//		hangClaw3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-//	}
+	private void flat() {
+		ctHubViper0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+		expHubViper1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+		linAct2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+		hangClaw3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+	}
 	private void forward() {
 		br0.setPower(gamepad1.right_trigger);
 		bl1.setPower(gamepad1.right_trigger);
@@ -141,9 +141,9 @@ public class TeleOpDrive extends LinearOpMode {
 	
 	private void linAct() {
 		if (gamepad2.right_stick_y > 0) {
-			linAct2.setPower(-1);
-		} else if (gamepad2.right_stick_y < 0) {
 			linAct2.setPower(1);
+		} else if (gamepad2.right_stick_y < 0) {
+			linAct2.setPower(-1);
 		}
 		else {
 			linAct2.setPower(0);
@@ -153,15 +153,15 @@ public class TeleOpDrive extends LinearOpMode {
 	private void claw() {
 		//wrist
 		if (gamepad2.x) {
-			wls1.setPosition(0.3);
+			wls4.setPosition(0.3);
 		}
 		
 		else if (gamepad2.a) {
-			wls1.setPosition(0.21);
+			wls4.setPosition(0.27);
 		}
 		
 		else if (gamepad2.y) {
-			wls1.setPosition(0.47);
+			wls4.setPosition(0.68);
 		}
 		
 		//claw
@@ -170,7 +170,7 @@ public class TeleOpDrive extends LinearOpMode {
 		}
 		
 		else if (gamepad2.left_bumper) {
-			ccs0.setPosition(0.8);
+			ccs0.setPosition(0.6);
 		}
 		//spin
 		else if (gamepad2.dpad_left) {

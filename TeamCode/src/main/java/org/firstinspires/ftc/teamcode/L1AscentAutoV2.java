@@ -103,7 +103,7 @@ public class L1AscentAutoV2 extends LinearOpMode {
 			ctHubViper0.setPower(0.3);
 			expHubViper1.setPower(0.3);
 			sleep(500);
-			EncoderBasedDriving.drive(0.1, 250);
+			EncoderBasedDriving.drive(0.1, 200);
 			//open claw here
 			sleep(1000);
 			EncoderBasedDriving.clawoc(1);
@@ -156,15 +156,15 @@ public class L1AscentAutoV2 extends LinearOpMode {
 			bl1.setPower(-0.4);
 			fl2.setPower(-0.4);
 			fr3.setPower(-0.4);
-			sleep(400);
+			sleep(700);
 			br0.setPower(0);
 			bl1.setPower(0);
 			fl2.setPower(0);
 			fr3.setPower(0);
 			
-			ctHubViper0.setPower(-0.4);
-			expHubViper1.setPower(-0.4);
-			sleep(400);
+			ctHubViper0.setPower(-0.5);
+			expHubViper1.setPower(-0.5);
+			sleep(1000);
 			ctHubViper0.setPower(0);
 			expHubViper1.setPower(0);
 			
@@ -454,4 +454,6 @@ public class L1AscentAutoV2 extends LinearOpMode {
 //		}
 //	}
 }
+
+
 
