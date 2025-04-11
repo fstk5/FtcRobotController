@@ -25,6 +25,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Create APK
+      uses: actions/upload-artifact@v4
       with:
           name: ${{ env.date_today }} - FtcRobotController APK generated
-          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+          path: ${{ env.main_project_module }}/build/outputs/apk/
