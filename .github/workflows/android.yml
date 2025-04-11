@@ -24,3 +24,7 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Create APK
+      with:
+          name: ${{ env.date_today }} - FtcRobotController APK generated
+          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
